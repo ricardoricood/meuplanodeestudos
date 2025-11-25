@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Completo QA - Do Zero ao Pleno</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .hero .duration {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: #f8f9fa;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .phase {
+            margin-bottom: 50px;
+            border-left: 5px solid #667eea;
+            padding-left: 30px;
+        }
+        
+        .phase-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            margin-left: -30px;
+        }
+        
+        .phase-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .phase-header .duration {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .module {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .module h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .skill-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .resource-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .resource-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .resource-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .resource-list a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .project-box {
+            background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+            border: 2px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .project-box h4 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .project-box ul {
+            margin-left: 20px;
+        }
+        
+        .project-box li {
+            margin: 8px 0;
+        }
+        
+        .tip-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .tip-box strong {
+            color: #856404;
+            font-size: 1.2em;
+        }
+        
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .checklist h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .checklist-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-left: 3px solid #28a745;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-item {
+            padding: 20px;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .progress-tracker {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        
+        .progress-tracker h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .skill-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎯 GUIA COMPLETO DE QA</h1>
+            <p>Do Zero ao Pleno</p>
+            <p class="duration">⏱️ 12-18 meses de dedicação intensiva</p>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#fase0">Fundamentos</a></li>
+                <li><a href="#fase1">QA Junior</a></li>
+                <li><a href="#fase2">QA Pleno</a></li>
+                <li><a href="#fase3">QA Sênior</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#cronograma">Cronograma</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- FASE 0 -->
+            <div id="fase0" class="phase">
+                <div class="phase-header">
+                    <h2>🌱 FASE 0: FUNDAMENTOS</h2>
+                    <p class="duration">Duração: 2-3 meses</p>
+                </div>
+
+                <div class="module">
+                    <h3>1. Lógica de Programação</h3>
+                    <p><strong>Por que:</strong> Base para entender código e criar testes automatizados</p>
+                    
+                    <h4 style="color: #667eea; margin-top: 20px;">📚 Cursos Gratuitos:</h4>
+                    <ul class="resource-list">
+                        <li>📺 <a href="https://www.cursoemvideo.com/curso/curso-de-algoritmo/" target="_blank">Curso em Vídeo - Lógica de Programação (Gustavo Guanabara)</a></li>
+                        <li>🎓 <a href="https://www.dio.me/" target="_blank">DIO - Lógica de Programação Essencial</a></li>
+                        <li>🧮 <a href="https://pt.khanacademy.org/computing/computer-programming" target="_blank">Khan Academy - Introdução à Programação</a></li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px;">💪 Exercícios:</h4>
+                    <ul class="resource-list">
+                        <li>🏆 <a href="https://www.beecrowd.com.br/" target="_blank">Beecrowd - Problemas iniciantes</a></li>
+                        <li>💻 <a href="https://www.hackerrank.com/domains/algorithms" target="_blank">HackerRank - Problem Solving</a></li>
+                        <li>🐍 <a href="https://exercism.org/tracks/python" target="_blank">Exercism - Python Track</a></li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>🎯 Desafio:</strong> Resolver 50 problemas básicos no Beecrowd nos primeiros 2 meses!
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>2. Git e GitHub</h3>
+                    <p><strong>Por que:</strong> Controle de versão é essencial para qualquer dev/QA</p>
+                    
+                    <ul class="resource-list">
+                        <li>📺 <a href="https://www.youtube.com/watch?v=2alg7MQ6_sI" target="_blank">Git e GitHub para Iniciantes - Willian Justen</a></li>
+                        <li>🎮 <a href="https://learngitbranching.js.org/?locale=pt_BR" target="_blank">Learn Git Branching (Interativo)</a></li>
+                        <li>📚 <a href="https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA" target="_blank">Git e GitHub - Curso em Vídeo</a></li>
+                    </ul>
+
+                    <div class="project-box">
+                        <h4>🚀 PROJETO PRÁTICO:</h4>
+                        <ul>
+                            <li>✓ Criar repositório pessoal no GitHub</li>
+                            <li>✓ Fazer commits diários</li>
+                            <li>✓ Trabalhar com branches</li>
+                            <li>✓ Criar portfólio no GitHub Pages</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>3. Linux Básico</h3>
+                    <p><strong>Por que:</strong> Muitos servidores e ambientes de teste usam Linux</p>
+                    
+                    <ul class="resource-list">
+                        <li>🐧 <a href="https://www.youtube.com/playlist?list=PLbV6TI03ZWYVB7gkXkBz1N7b6UJZrWdWx" target="_blank">Linux para Iniciantes - Diolinux</a></li>
+                        <li>📖 <a href="https://linuxjourney.com/" target="_blank">Linux Journey</a></li>
+                        <li>🎓 <a href="https://www.ev.org.br/" target="_blank">Fundação Bradesco - Linux</a></li>
+                    </ul>
+                </div>
+
+                <div class="module">
+                    <h3>4. Inglês Técnico</h3>
+                    <p><strong>Por que:</strong> Documentação, vagas e comunidade são em inglês</p>
+                    
+                    <ul class="resource-list">
+                        <li>🦉 <a href="https://www.duolingo.com/" target="_blank">Duolingo - 30min/dia</a></li>
+                        <li>💡 Mudar idioma do sistema para inglês</li>
+                        <li>📺 Assistir vídeos tech com legendas em inglês</li>
+                        <li>📚 Ler documentação oficial em inglês</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FASE 1 -->
+            <div id="fase1" class="phase">
+                <div class="phase-header">
+                    <h2>🎓 FASE 1: QA JUNIOR</h2>
+                    <p class="duration">Duração: 6-8 meses</p>
+                </div>
+
+                <div class="module">
+                    <h3>📘 Módulo 1: Fundamentos de QA (Mês 1-2)</h3>
+                    
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Teoria de Testes</h4>
+                            <ul>
+                                <li>7 Princípios de Teste</li>
+                                <li>Níveis de Teste</li>
+                                <li>Tipos de Teste</li>
+                                <li>Técnicas de Design</li>
+                                <li>SDLC / STLC</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Cursos</h4>
+                            <ul>
+                                <li><a href="https://www.istqb.org/" target="_blank">ISTQB Syllabus</a></li>
+                                <li><a href="https://www.guru99.com/software-testing.html" target="_blank">Guru99 Testing</a></li>
+                                <li>YouTube: QA Completo</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Documentação</h4>
+                            <ul>
+                                <li>Planos de Teste</li>
+                                <li>Casos de Teste</li>
+                                <li>Relatórios de Bug</li>
+                                <li>Checklists</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-box">
+                        <h4>🎯 PROJETO 1: Documentação Completa</h4>
+                        <ul>
+                            <li>Criar 50 casos de teste para e-commerce</li>
+                            <li>Documentar 20 bugs reais encontrados</li>
+                            <li>Testar: Mercado Livre, Amazon, Shopee</li>
+                            <li>Criar relatório completo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📗 Módulo 2: Testes Manuais (Mês 2-3)</h3>
+                    
+                    <ul class="resource-list">
+                        <li>🎯 Testes Funcionais</li>
+                        <li>👤 Testes de Usabilidade</li>
+                        <li>🌐 Testes Cross-browser</li>
+                        <li>📱 Testes Responsivos</li>
+                        <li>🔍 Testes Exploratórios</li>
+                    </ul>
+
+                    <div class="project-box">
+                        <h4>🎯 PROJETO 2: Teste Mobile</h4>
+                        <ul>
+                            <li>Testar 3 apps (delivery, banco, social)</li>
+                            <li>Comparar versão web vs mobile</li>
+                            <li>Documentar problemas de UX</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📙 Módulo 3: Testes de API (Mês 3-4)</h3>
+                    
+                    <h4 style="color: #667eea;">APIs para praticar (gratuitas):</h4>
+                    <ul class="resource-list">
+                        <li>📊 <a href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a></li>
+                        <li>👥 <a href="https://reqres.in/" target="_blank">ReqRes</a></li>
+                        <li>⚡ <a href="https://pokeapi.co/" target="_blank">PokéAPI</a></li>
+                        <li>🌟 <a href="https://swapi.dev/" target="_blank">Star Wars API</a></li>
+                        <li>🛒 <a href="https://fakestoreapi.com/" target="_blank">Fake Store API</a></li>
+                    </ul>
+
+                    <div class="project-box">
+                        <h4>🎯 PROJETO 3: Suite de Testes de API</h4>
+                        <ul>
+                            <li>Criar 100+ testes no Postman</li>
+                            <li>Testar todos os endpoints</li>
+                            <li>Validar status codes e schemas</li>
+                            <li>Documentar coleção completa</li>
+                            <li>Publicar no GitHub</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📕 Módulo 4: SQL (Mês 4-5)</h3>
+                    
+                    <ul class="resource-list">
+                        <li>📚 <a href="https://sqlzoo.net/wiki/SQL_Tutorial" target="_blank">SQLZoo (Interativo)</a></li>
+                        <li>📖 <a href="https://www.w3schools.com/sql/" target="_blank">W3Schools SQL</a></li>
+                        <li>🏆 <a href="https://www.hackerrank.com/domains/sql" target="_blank">HackerRank SQL</a></li>
+                    </ul>
+
+                    <div class="project-box">
+                        <h4>🎯 PROJETO 4: Banco de Dados</h4>
+                        <ul>
+                            <li>Criar DB de e-commerce</li>
+                            <li>Executar 50+ queries de teste</li>
+                            <li>Validar integridade de dados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📔 Módulo 5: Metodologias Ágeis (Mês 5-6)</h3>
+                    
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Scrum</h4>
+                            <ul>
+                                <li>Sprint Planning</li>
+                                <li>Daily Scrum</li>
+                                <li>Sprint Review</li>
+                                <li>Retrospective</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Kanban</h4>
+                            <ul>
+                                <li>Visualização fluxo</li>
+                                <li>Limitar WIP</li>
+                                <li>Melhoria contínua</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Ferramentas</h4>
+                            <ul>
+                                <li><a href="https://www.atlassian.com/software/jira" target="_blank">Jira</a></li>
+                                <li><a href="https://trello.com/" target="_blank">Trello</a></li>
+                                <li><a href="https://www.notion.so/" target="_blank">Notion</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📓 Módulo 6: Automação (Mês 6-8)</h3>
+                    
+                    <ul class="resource-list">
+                        <li>🐍 Python Básico</li>
+                        <li>🤖 Selenium WebDriver</li>
+                        <li>🧪 pytest Framework</li>
+                        <li>📦 Page Object Model</li>
+                    </ul>
+
+                    <div class="project-box">
+                        <h4>🎯 PROJETO 5: Automação Web</h4>
+                        <ul>
+                            <li>Site: <a href="https://www.saucedemo.com/" target="_blank">SauceDemo</a></li>
+                            <li>Criar suite completa de testes</li>
+                            <li>Implementar POM</li>
+                            <li>Gerar relatórios HTML</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FASE 2 -->
+            <div id="fase2" class="phase">
+                <div class="phase-header">
+                    <h2>🚀 FASE 2: QA PLENO</h2>
+                    <p class="duration">Duração: 8-12 meses</p>
+                </div>
+
+                <div class="module">
+                    <h3>📘 Módulo 7: Automação Avançada (Mês 9-11)</h3>
+                    
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Padrões Avançados</h4>
+                            <ul>
+                                <li>Page Object Model</li>
+                                <li>Factory Pattern</li>
+                                <li>Builder Pattern</li>
+                                <li>Strategy Pattern</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Data-Driven</h4>
+                            <ul>
+                                <li>CSV, JSON, Excel</li>
+                                <li>Parametrização</li>
+                                <li>Dados dinâmicos</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Frameworks</h4>
+                            <ul>
+                                <li>Robot Framework</li>
+                                <li>Cypress</li>
+                                <li>Playwright</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📗 Módulo 8: CI/CD (Mês 11-13)</h3>
+                    
+                    <ul class="resource-list">
+                        <li>🔄 GitHub Actions</li>
+                        <li>🐋 Docker e Containers</li>
+                        <li>⚙️ Jenkins</li>
+                        <li>📊 Relatórios automatizados</li>
+                    </ul>
+
+                    <div class="project-box">
+                        <h4>🎯 PROJETO 6: Pipeline Completo</h4>
+                        <ul>
+                            <li>Configurar GitHub Actions</li>
+                            <li>Dockerizar testes</li>
+                            <li>Executar em CI/CD</li>
+                            <li>Notificações automáticas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📙 Módulo 9: Performance & Segurança (Mês 13-15)</h3>
+                    
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Performance</h4>
+                            <ul>
+                                <li><a href="https://jmeter.apache.org/" target="_blank">JMeter</a></li>
+                                <li><a href="https://k6.io/" target="_blank">K6</a></li>
+                                <li><a href="https://locust.io/" target="_blank">Locust</a></li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Segurança</h4>
+                            <ul>
+                                <li><a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10</a></li>
+                                <li><a href="https://www.zaproxy.org/" target="_blank">OWASP ZAP</a></li>
+                                <li>Burp Suite</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Acessibilidade</h4>
+                            <ul>
+                                <li>WCAG 2.1</li>
+                                <li>axe DevTools</li>
+                                <li>Lighthouse</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📕 Módulo 10: Mobile Testing (Mês 15-17)</h3>
+                    
+                    <ul class="resource-list">
+                        <li>📱 <a href="http://appium.io/" target="_blank">Appium</a></li>
+                        <li>🤖 Android Studio</li>
+                        <li>🍎 Xcode (iOS)</li>
+                        <li>☁️ Device Farms</li>
+                    </ul>
+
+                    <div class="project-box">
+                        <h4>🎯 PROJETO 7: Testes Mobile</h4>
+                        <ul>
+                            <li>Automatizar app Android</li>
+                            <li>Testar gestos e rotações</li>
+                            <li>Validar conectividade</li>
+                            <li>Executar em emulador e real device</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FASE 3 -->
+            <div id="fase3" class="phase">
+                <div class="phase-header">
+                    <h2>🏆 FASE 3: QA SÊNIOR</h2>
+                    <p class="duration">Duração: 24+ meses</p>
+                </div>
+
+                <div class="module">
+                    <h3>📘 Módulo 11: Arquitetura (Mês 18-20)</h3>
+                    
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Estratégia</h4>
+                            <ul>
+                                <li>Test Strategy</li>
+                                <li>Test Planning</li>
+                                <li>Risk Management</li>
+                                <li>Métricas e KPIs</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Microservices</h4>
+                            <ul>
+                                <li>Contract Testing</li>
+                                <li>Pact</li>
+                                <li>Service Mesh</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Cloud</h4>
+                            <ul>
+                                <li>AWS</li>
+                                <li>Azure</li>
+                                <li>GCP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>📗 Módulo 12: Liderança (Mês 20-24)</h3>
+                    
+                    <ul class="resource-list">
+                        <li>👥 Comunicação Efetiva</li>
+                        <li>🎯 Liderança Técnica</li>
+                        <li>📊 Gestão de Métricas</li>
+                        <li>🤝 Mentoria</li>
+                        <li>📝 Documentação Técnica</li>
+                    </ul>
+                </div>
+
+                <div class="module">
+                    <h3>📙 Módulo 13: Especialização</h3>
+                    
+                    <p><strong>Escolha sua área:</strong></p>
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Automation Architect</h4>
+                            <p>Desenhar arquiteturas de automação</p>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Performance Engineer</h4>
+                            <p>Especialista em performance</p>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Security Tester</h4>
+                            <p>Pentesting e vulnerabilidades</p>
+                        </div>
+                        <div class="skill-card">
+                            <h4>DevOps/QA</h4>
+                            <p>CI/CD e Infrastructure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECURSOS -->
+            <div id="recursos" class="phase">
+                <div class="phase-header">
+                    <h2>📚 RECURSOS EXTRAS</h2>
+                </div>
+
+                <div class="module">
+                    <h3>🎥 Canais do YouTube</h3>
+                    
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Português</h4>
+                            <ul>
+                                <li><a href="https://www.youtube.com/@juliodelimas" target="_blank">Júlio de Lima - QA Ninja</a></li>
+                                <li><a href="https://www.youtube.com/@agilizei" target="_blank">Agilizei</a></li>
+                                <li><a href="https://www.youtube.com/@QAGirlsBR" target="_blank">QA Girls</a></li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Inglês</h4>
+                            <ul>
+                                <li><a href="https://testautomationu.applitools.com/" target="_blank">Test Automation University</a></li>
+                                <li><a href="https://testguild.com/" target="_blank">Test Guild</a></li>
+                                <li><a href="https://www.youtube.com/@RaghavPal" target="_blank">Automation Step by Step</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <h3>🌐 Sites e Comunidades</h3>
+                    
+                    <ul class="resource-list">
+                        <li>🏛️ <a href="https://www.ministryoftesting.com/" target="_blank">Ministry of Testing</a></li>
+                        <li>📖 <a href="https://www.softwaretestinghelp.com/" target="_blank">Software Testing Help</a></li>
+                        <li>👥 <a href="https://qaladies.com.br/" target="_blank">QA Ladies</a></li>
+                        <li>💬 <a href="https://www.reddit.com/r/softwaretesting/" target="_blank">Reddit - Software Testing</a></li>
+                    </ul>
+                </div>
+
+                <div class="module">
+                    <h3>🎓 Certificações</h3>
+                    
+                    <div class="skill-grid">
+                        <div class="skill-card">
+                            <h4>Iniciante</h4>
+                            <ul>
+                                <li>ISTQB Foundation (~$200)</li>
+                                <li>Scrum Fundamentals (Grátis)</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Intermediário</h4>
+                            <ul>
+                                <li>ISTQB Advanced (~$400)</li>
+                                <li>ISTQB Agile (~$250)</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h4>Avançado</h4>
+                            <ul>
+                                <li>ISTQB Expert (~$600)</li>
+                                <li>AWS DevOps</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CRONOGRAMA -->
+            <div id="cronograma" class="phase">
+                <div class="phase-header">
+                    <h2>📅 CRONOGRAMA DETALHADO</h2>
+                    <p>Dedicação: 2-3 horas/dia</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>📍 Mês 1-2: Fundamentos</h4>
+                        <p>Lógica de Programação, Git, Linux</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>📍 Mês 3-4: Testes Manuais</h4>
+                        <p>Documentação, API Testing com Postman</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>📍 Mês 5-6: SQL e Ágil</h4>
+                        <p>Banco de dados, Scrum, Jira</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>📍 Mês 7-10: Automação</h4>
+                        <p>Python, Selenium, pytest</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>📍 Mês 11-13: CI/CD</h4>
+                        <p>GitHub Actions, Docker, Jenkins</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>📍 Mês 14-17: Especialização</h4>
+                        <p>Performance, Segurança, Mobile</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>📍 Mês 18-24: Sênior</h4>
+                        <p>Arquitetura, Liderança, Mentoria</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA SECTION -->
+            <div class="cta-section">
+                <h2>🚀 Comece Agora!</h2>
+                <p>Não espere o momento perfeito. Comece hoje com pequenos passos.</p>
+                <a href="https://github.com/" target="_blank" class="cta-button">Criar GitHub</a>
+                <a href="https://www.beecrowd.com.br/" target="_blank" class="cta-button">Resolver Problemas</a>
+                <a href="https://www.linkedin.com/" target="_blank" class="cta-button">Atualizar LinkedIn</a>
+            </div>
+
+            <!-- CHECKLIST -->
+            <div class="checklist">
+                <h3>✅ CHECKLIST IMEDIATO</h3>
+                <p><strong>Faça esta semana:</strong></p>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Criar conta no GitHub</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Instalar Git no computador</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">Começar curso de Lógica</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">Resolver 5 problemas no Beecrowd</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">Atualizar LinkedIn</label>
+                </div>
+            </div>
+
+            <!-- DICAS FINAIS -->
+            <div class="tip-box" style="margin-top: 40px;">
+                <strong>💡 DICAS PARA O SUCESSO:</strong>
+                <ul style="margin-top: 15px;">
+                    <li>✓ Consistência > Intensidade (melhor 1h/dia do que 10h no fim de semana)</li>
+                    <li>✓ Pratique TODOS OS DIAS, mesmo que sejam 30 minutos</li>
+                    <li>✓ Documente TUDO no GitHub</li>
+                    <li>✓ Participe de comunidades e faça networking</li>
+                    <li>✓ Ensine o que aprende (blog, vídeos, posts)</li>
+                    <li>✓ Não compare sua jornada com a dos outros</li>
+                    <li>✓ Celebre pequenas vitórias</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>🎯 Guia Completo de QA - Do Zero ao Pleno</p>
+            <p>Criado para: Ricardo Lima e futuros QAs</p>
+            <p>Última atualização: Novembro 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
